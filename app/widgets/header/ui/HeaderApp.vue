@@ -1,6 +1,6 @@
 <template>
 	<header>
-		<div class="flex justify-between items-center !py-1 px-4 md:px-8 lg:px-14 border-b-1">
+		<div class="flex justify-between items-center !py-1 px-4 md:px-8 lg:px-14 border-b-1 bg-gray-100">
 			<!-- Десктопная навигация -->
 			<nav class="hidden md:flex gap-4 lg:gap-6 items-center">
 				<RouterLink to="/">

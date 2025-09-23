@@ -12,7 +12,7 @@
 		:disabled
 		:trailing-icon
 		:type
-    :ui="{ base: `transition-all duration-300 hover:scale-95 active:scale-90`}"
+    :ui="{ base: `transition-all duration-300  active:scale-90`}"
   >
 		<span>
 			<slot/>

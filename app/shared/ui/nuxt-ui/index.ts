@@ -1,1 +1,6 @@
 export { default as NButton } from './NButton.vue'
+export { default as NCheckbox } from './NCheckbox.vue'
+export { default as NInput } from './NInput.vue'
+export { default as NPasswordInput } from './NPasswordInput.vue'
+export { default as NFormField } from './NFormField.vue'
+export { default as NPagination } from './NPagination.vue'

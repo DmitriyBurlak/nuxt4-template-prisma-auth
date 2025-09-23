@@ -15,7 +15,7 @@ export const useAuth = () => {
 		}
 	}
 
-	const login = async ({ email, password }: AUTH.LoginRequest, remember: boolean) => {
+	const login = async ({ email, password }: AUTH.LoginRequest) => {
 		const { data, status } = await authApi.auth.login({
 			email,
 			password,
