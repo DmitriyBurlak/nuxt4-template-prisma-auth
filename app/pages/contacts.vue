@@ -1,7 +1,7 @@
 <template>
 	<section class="section container">
 		<h2>
-     Main page
+     Contacts
     </h2>
 	</section>
 </template>
