@@ -4,11 +4,11 @@
 		<div class="flex-1 w-full">
 			<slot />
 		</div>
-		<FooterApp class="mt-auto" />
+		<!--<FooterApp class="mt-auto" />-->
 	</div>
 </template>
 
 <script setup lang="ts">
 import { HeaderApp } from '~/widgets/header';
-import { FooterApp } from '~/widgets/footer';
+//import { FooterApp } from '~/widgets/footer';
 </script>

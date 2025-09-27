@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+	//shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model User {
+  id             String     @id @default(uuid())
+  fullname       String
+  phone          String?
+  avatar         String?
+  password       String
+  email          String     @unique
+  emailVerified  DateTime?  @map("email_verified")
+  isActive       Boolean    @default(false) @map("is_active")
+
+  lastLogin      DateTime?  @map("last_login")
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  roles          UserRole[]
+	sessions       Session[]
+	tokens         Token[]
+
+  @@map("users")
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  userId       String   @map("user_id")
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  refreshToken String     @unique
+  userAgent    String?
+  ip           String?
+  timezone     String?
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+	@@map("sessions")
+}
+
+model Token {
+  id         String   @id @default(uuid())
+	type       String   // 'VERIFICATION', 'PASSWORD_RESET', 'API' etc.
+  token      String   @unique
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+	expiresAt  DateTime
+  createdAt  DateTime @default(now())
+
+	@@index([token], name: "token_idx")
+	@@index([expiresAt], name: "expires_idx")
+  @@map("tokens")
+}
+
+model Role {
+  id          Int     @id @default(autoincrement())
+  name        String  @unique
+  description String?
+  users UserRole[]
+
+  @@map("roles")
+}
+
+model UserRole {
+  userId     String   @map("user_id")
+  roleId     Int      @map("role_id")
+  assignedAt DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role       Role     @relation(fields: [roleId], references: [id])
+
+  @@id([userId, roleId])
+  @@map("user_roles")
+}
