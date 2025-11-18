@@ -9,9 +9,9 @@
 		:required
 		:icon
     :ui="{
-      label: '!text-neutral-300',
+      label: '!text-neutral-700',
       indicator: `flex items-center justify-center size-full text-inverted  ${appColor && 'bg-transparent text-blue-500'}`,
-			base: `${appColor && 'ring-1 ring-inset ring-neutral-500/70 hover:ring-neutral-500 transition duration-400'}`,
+			base: `${appColor && 'ring-1 ring-inset ring-neutral-300 hover:ring-neutral-400 transition duration-200'}`,
     }"
   />
 </template>

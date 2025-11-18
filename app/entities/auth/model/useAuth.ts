@@ -1,27 +1,28 @@
 import { useAuthStore } from './useStore'
-import { authApi } from '../index'
-
-import type { AUTH } from '~~/types/auth'
+import { auth as authApi } from './index'
+import type { AUTH } from '~~/shared/types/auth'
 
 export const useAuth = () => {
 	const authStore = useAuthStore()
 	const toast = useToast()
 	
 	const fetchUser = async () => {
-		const { data, status } = await authApi.auth.fetchUser()
+		const { data, status } = await authApi.fetchUser()
 
 		if ( status?.value === 'success' ) {
 			authStore.user = data.value?.user || null
+		} else {
+			authStore.user = null
 		}
 	}
 
 	const login = async ({ email, password }: AUTH.LoginRequest) => {
-		const { data, status } = await authApi.auth.login({
+		const { data, status, error } = await authApi.login({
 			email,
 			password,
 		})
 
-		if ( status?.value === 'success' ) {
+		if (status?.value === 'success') {
 			authStore.user = data.value?.user || null
 			
 			toast.add({ 
@@ -31,19 +32,18 @@ export const useAuth = () => {
 			navigateTo('/workspace')
 			return { result: true }
 		}
-	}
-
-	const refreshToken = async (): Promise<AUTH.RefreshTokenResponse | null> => {
-		const { data, status } = await authApi.auth.refreshToken()
 		
-		if (status?.value === 'success' && data.value) {
-			return data.value
+		// Проверяем, не является ли ошибка неподтвержденным email
+		if (error?.value?.data?.code === 'EMAIL_NOT_VERIFIED') {
+			navigateTo(`/verify-email?email=${encodeURIComponent(email)}`)
+			return { result: false, error: error.value }
 		}
-		return null
+		
+		return { result: false, error: error?.value }
 	}
 
 	const logout = async () => {
-		await authApi.auth.logout()
+		await authApi.logout()
 
 		authStore.user = null
 		navigateTo('/')
@@ -53,6 +53,5 @@ export const useAuth = () => {
 		login,
 		fetchUser,
 		logout,
-		refreshToken,
 	}
 }

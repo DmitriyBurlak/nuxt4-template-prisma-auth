@@ -9,8 +9,8 @@
 		:help
 		:error
 		:ui="{
-			error: 'text-red-700',
-			label: 'text-neutral-800',
+			error: 'text-red-500',
+			label: 'text-neutral-700 font-medium',
 		}">
 		<slot />
 	</UFormField>

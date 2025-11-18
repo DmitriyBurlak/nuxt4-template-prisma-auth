@@ -1,7 +1,5 @@
-//import { AUTH_CONSTANTS } from '~~/types/auth/auth.constants'
-import type { AuthStore } from '../types'
-import { useAuth } from "~/entities/auth/model"
-
+import { useAuth } from "~/entities/auth"
+import type { AuthStore } from './types'
 
 export const useAuthStore = defineStore('auth', {
 	state: (): AuthStore => ({
@@ -14,7 +12,6 @@ export const useAuthStore = defineStore('auth', {
 	},
 	actions: {
 		async initialize() {
-			console.log('initialize', this.user);
 			const auth = useAuth()
 
 			try {
@@ -26,6 +23,7 @@ export const useAuthStore = defineStore('auth', {
 			} catch (error) {
 				console.error('Error during store initialization:', error)
 				this.isInitialized = true
+				this.user = null
 			}
     },
 	}

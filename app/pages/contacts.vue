@@ -1,7 +1,7 @@
 <template>
-	<section class="section container">
+	<section class="container py-8">
 		<h2>
-     Contacts
+     	Contacts
     </h2>
 	</section>
 </template>

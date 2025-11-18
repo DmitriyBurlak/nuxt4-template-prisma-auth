@@ -14,6 +14,10 @@
 					<NPasswordInput v-model="state.password" placeholder="Введите пароль" class="!w-full" />
 				</NFormField>
 
+				<div class="flex items-center justify-end">
+					<NuxtLink to="/forgot-password" class="text-blue-500 text-sm font-semibold hover:text-blue-400 transition duration-400">Забыли пароль?</NuxtLink>
+				</div>
+
 				<div class="pt-4">
 					<NButton
 						type="submit"
@@ -37,20 +41,20 @@
 </template>
 
 <script setup lang="ts">
-import { authModel } from '~/entities/auth';
+import { useAuth } from '~/entities/auth';
 import { useRoute } from 'vue-router';
-import { NButton, NCheckbox, NInput, NFormField, NPasswordInput } from '~/shared/ui';
+import { NButton, NInput, NFormField, NPasswordInput } from '~/shared/ui';
 import { z } from 'zod';
 
 useHead({ title: 'Войти' });
 
-//definePageMeta({ 
-//	middleware: ['auth'],
-//})
+definePageMeta({ 
+	middleware: ['auth'],
+})
 
 const route = useRoute();
 const toast = useToast();
-const auth = authModel.useAuth()
+const auth = useAuth()
 
 const success = ref(route.query.success as string)
 

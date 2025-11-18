@@ -24,12 +24,11 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from "~/entities/auth/model"
-import { authModel } from "~/entities/auth"
+import { useAuthStore, useAuth } from "~/entities/auth"
 import type { DropdownMenuItem } from '@nuxt/ui'
 
 const authStore = useAuthStore()
-const useAuth = authModel.useAuth()
+const useAuthControll = useAuth()
 
 const isOpen = ref(false)
 
@@ -46,7 +45,7 @@ const items = computed<DropdownMenuItem[][]>(() => [
       label: 'Выход',
       icon: 'i-lucide-log-out',
 			onSelect() {
-				useAuth.logout()
+				useAuthControll.logout()
 			}
     }
   ]

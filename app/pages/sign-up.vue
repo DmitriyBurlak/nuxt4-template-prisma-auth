@@ -1,7 +1,7 @@
 <template>
 	<div class="relative py-[100px] pt-[80px] md:pt-[140px] flex flex-col items-center justify-center overflow-hidden">
 		<div class="text-center">
-			<h1 class="text-gradient">Создать аккаунт</h1>
+			<h1>Создать аккаунт</h1>
 		</div>
 
 		<div class="px-3 py-6 sm:p-6 md:p-10 !mt-6 border-white/10 rounded-2xl max-w-lg w-full bg-gray-100">
@@ -63,15 +63,15 @@
 </template>
 
 <script setup lang="ts">
-import { authApi } from '~/entities/auth';
+import { auth as authApi } from '~/entities/auth';
 import { NButton, NCheckbox, NInput, NFormField, NPasswordInput } from '~/shared/ui';
 import { z } from 'zod';
 
 useHead({ title: 'Регистрация' });
 
-//definePageMeta({ 
-//	middleware: ['auth'],
-//})
+definePageMeta({ 
+	middleware: ['auth'],
+})
 
 const toast = useToast()
 
@@ -107,7 +107,7 @@ const clearState = () => {
 }
 
 const onSubmit = async () => {
-	const { data, status } = await authApi.auth.register({
+	const { data, status } = await authApi.register({
 		fullname: state.fullname || '',
 		email: state.email || '',
 		password: state.password || '',

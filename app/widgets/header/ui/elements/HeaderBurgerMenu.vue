@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<UButton
-			icon="i-lucide-menu"
+			icon="i-heroicons-bars-3"
 			variant="ghost"
 			aria-label="Открыть меню"
 			class="xl md:hidden"
@@ -11,12 +11,18 @@
 		<USlideover
 			v-model:open="isOpenMenu"
 			side="left"
+			title="Меню навигации"
+			description="Навигационное меню приложения"
+			:ui="{ 
+				title: 'sr-only',
+				description: 'sr-only'
+			}"
 		>
 			<template #content>
 				<div class="p-4">
 					<div class="flex justify-end">
 						<UButton
-							icon="i-lucide-x"
+							icon="i-heroicons-x-mark"
 							variant="ghost"
 							aria-label="Открыть меню"
 							class="max-w-max"

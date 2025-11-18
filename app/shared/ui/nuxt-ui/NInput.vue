@@ -18,12 +18,13 @@
 		:loading-icon="loadingIcon"
 		:ui="{
 			base: [
-				'relative block w-full disabled:cursor-not-allowed disabled:opacity-75 disabled:bg-neutral-800 focus:outline-none border-0',
-				'bg-transparent',
-				'text-neutral-700 placeholder:text-neutral-500',
-				'!ring-1 ring-inset ring-neutral-600',
-				'hover:ring-1 hover:ring-neutral-500/70',
-				'transition duration-400',
+				'relative block w-full disabled:cursor-not-allowed disabled:opacity-75 disabled:bg-neutral-100 focus:outline-none border-0',
+				'bg-white',
+				'text-neutral-900 placeholder:text-neutral-400',
+				'!ring-1 ring-inset ring-neutral-300',
+				'hover:ring-1 hover:ring-neutral-400',
+				'focus:ring-2 focus:ring-blue-500',
+				'transition duration-200',
 			],
 			leading: 'pl-3',
 			trailing: 'pr-3',

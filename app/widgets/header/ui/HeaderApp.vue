@@ -1,10 +1,10 @@
 <template>
 	<header>
-		<div class="flex justify-between items-center !py-1 px-4 md:px-8 lg:px-14 border-b-1 bg-gray-100">
+		<div class="flex justify-between items-center !py-1 px-4 md:px-8 lg:px-14 border-b-1 bg-white">
 			<!-- Десктопная навигация -->
 			<nav class="hidden md:flex gap-4 lg:gap-6 items-center">
 				<RouterLink to="/">
-					<img src="https://avatars.githubusercontent.com/u/58446735?v=4" alt="logo" class="w-[40px] lg:w-[50px] rounded-full">
+					<img src="/assets/images/logo.svg" alt="logo" class="w-10 rounded-full">
 				</RouterLink>
 
 				<NuxtLink 
@@ -22,7 +22,7 @@
 				<HeaderBurgerMenu :links="headerLinks" />
 
 				<RouterLink to="/">
-					<img src="https://avatars.githubusercontent.com/u/58446735?v=4" alt="logo" class="w-[40px] lg:w-[50px] rounded-full">
+					<img src="/assets/images/logo.svg" alt="logo" class="w-8 lg:w-[50px] rounded-full">
 				</RouterLink>
 			</div>
 
@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from "~/entities/auth/model"
+import { useAuthStore } from "~/entities/auth"
 import { HeaderBurgerMenu, ProfileDropDown } from './elements';
 import { NButton } from '~/shared/ui';
 

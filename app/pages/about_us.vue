@@ -1,7 +1,7 @@
 <template>
-	<section class="section container">
+	<section class="container py-8">
 		<h2>
-     About us
+     	About us
     </h2>
 	</section>
 </template>

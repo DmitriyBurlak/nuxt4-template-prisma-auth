@@ -68,3 +68,30 @@ export const lightMask = (value: string, mask: string) => {
 	
 	return res
 }
+
+export const getChangedFields = <T extends Record<string, any>>(
+	state: T,
+	copyState: T
+): Partial<{ [K in keyof T]: Exclude<T[K], undefined> | null }> => {
+  const changes: Partial<T> = {};
+  
+	(Object.keys(state) as Array<keyof T>).forEach(key => {
+    const currentValue = state[key];
+    const initialValue = copyState[key];
+    
+    // Проверяем, изменилось ли значение
+    if (currentValue !== initialValue) {
+      // Проверяем, является ли новое значение "пустым"
+      const isEmpty = 
+        currentValue === undefined || 
+        currentValue === null || 
+        currentValue === '';
+      
+      // Если значение стало пустым, передаем null для очистки в базе
+      // Если значение непустое, передаем новое значение
+      changes[key] = isEmpty ? null : currentValue;
+    }
+  });
+
+  return changes as Partial<{ [K in keyof T]: Exclude<T[K], undefined> | null }>;
+};

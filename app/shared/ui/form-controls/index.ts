@@ -1,0 +1,1 @@
+export { default as BInputMask } from './InputMask.vue'

@@ -1,5 +1,5 @@
 :root {
-  --bg-color: #e5e7eb;
+  --bg-color: #f0f0f0;
   --text-color: #1c1917;
 	--global-font-family: "Mulish", sans-serif;
 }
@@ -34,10 +34,6 @@ body {
 	font-size: 16px;
 }
 
-.section {
-	@apply py-[50px] md:py-[80px];
-}
-
 .container {
 	max-width: 1244px;
 	width: 100%;
@@ -55,16 +51,4 @@ h2 {
 
 h3 {
 	@apply text-[18px] md:text-[22px] lg:text-2xl font-medium;
-}
-
-h4 {
-	@apply text-xl font-medium;
-}
-
-h5 {
-	@apply text-base font-medium;
-}
-
-h6 {
-	@apply text-sm font-medium;
 }

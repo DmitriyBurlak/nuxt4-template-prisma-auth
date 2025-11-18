@@ -1,5 +1,5 @@
 import { useApi } from '~/shared/lib/api'
-import type { AUTH } from '~~/types/auth'
+import type { AUTH } from '~~/shared/types/auth'
 
 export const register = (body: AUTH.RegisterRequest) => {
 	return useApi<AUTH.RegisterResponse>({urlPath: 'api/auth/register', options: { method: 'POST', body }, isShowMessageError: true})
@@ -9,12 +9,16 @@ export const verifyEmail = (body: AUTH.VerifyEmailRequest) => {
 	return useApi<AUTH.VerifyEmailResponse>({urlPath: 'api/auth/verify-email', options: { method: 'POST', body }, isShowMessageError: true })
 }
 
+export const resendVerification = (body: { email: string }) => {
+	return useApi<{ message: string }>({urlPath: 'api/auth/resend-verification', options: { method: 'POST', body }, isShowMessageError: true })
+}
+
 export const login = async (body: AUTH.LoginRequest) => {
 	return await useApi<AUTH.LoginResponse>({urlPath: 'api/auth/login', options: { method: 'POST', body }, isShowMessageError: true })
 }
 
 export const fetchUser = async () => {
-	return await useApi<AUTH.FetchUserResponse>({urlPath: 'api/auth/me', options: { method: 'GET' }})
+	return await useApi<AUTH.FetchUserResponse>({urlPath: 'api/auth/me', options: { method: 'GET' }, server: true })
 }
 
 export const updateMe = async (body: AUTH.UpdateMeParams) => {
@@ -30,13 +34,9 @@ export const logout = async () => {
 }
 
 export const forgotPassword = async (email: string) => {
-	return await useApi<AUTH.ForgotPasswordResponse>({urlPath: 'api/auth/forgot-password', options: { method: 'POST', body: { email } }})
+	return await useApi<AUTH.ForgotPasswordResponse>({urlPath: 'api/auth/forgot-password', options: { method: 'POST', body: { email } }, isShowMessageError: true })
 }
 
 export const resetPassword = async (body: AUTH.ResetPasswordRequest) => {
 	return await useApi<AUTH.ResetPasswordResponse>({urlPath: 'api/auth/reset-password', options: { method: 'POST', body }})
-}
-
-export const refreshToken = async () => {
-	return await useApi<AUTH.RefreshTokenResponse>({urlPath: 'api/auth/refresh-token', options: { method: 'POST' }})
 }
