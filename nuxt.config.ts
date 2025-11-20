@@ -19,4 +19,14 @@ export default defineNuxtConfig({
 		MAIL_HOST: process.env.NUXT_MAIL_HOST,
 		MAIL_PORT: process.env.NUXT_MAIL_PORT,
 	},
+	prisma: {
+		runMigration: false,
+  },
+	vite: {
+    resolve: {
+      alias: {
+        '.prisma/client/index-browser': './node_modules/.prisma/client/index-browser.js',
+      },
+    },
+  },
 })

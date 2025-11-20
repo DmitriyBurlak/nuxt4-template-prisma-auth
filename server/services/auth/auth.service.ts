@@ -87,7 +87,7 @@ export class AuthService {
 
 		const accessToken = generateAccessToken({ userId: user.id, roles: user.roles.map(ur => ur.role.name) }, accessTokenLife)
 		const refreshToken = generateAccessToken({ userId: user.id }, refreshTokenLife)
-		
+
     await prisma.session.create({
       data: {
         userId: user.id,

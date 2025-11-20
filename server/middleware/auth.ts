@@ -37,8 +37,8 @@ export default defineEventHandler(async (event) => {
 
 		if (accessToken) {
       try {
-        const decoded = verifyAccessToken(accessToken) as { userId: string, clientId?: string, roles: string[] }
-        event.context.user = { id: decoded.userId, clientId: decoded?.clientId || undefined, roles: decoded.roles }
+        const decoded = verifyAccessToken(accessToken) as { userId: string, roles: string[] }
+        event.context.user = { id: decoded.userId, roles: decoded.roles }
         return
       } catch (jwtError) {
 				const jwtErrorStringify = JSON.parse(JSON.stringify(jwtError))

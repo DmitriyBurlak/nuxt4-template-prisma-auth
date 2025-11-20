@@ -75,7 +75,7 @@ const allMenuItems = ref<NavigationMenuItemWithRoles[][]>([
     },
     {
       label: 'Профиль',
-      icon: 'i-heroicons:user-circle',
+      icon: 'i-heroicons-user-circle',
       to: '/workspace/profile',
 			allowedRoles: [RoleUsersEnum.ADMIN, RoleUsersEnum.EMPLOYEE, RoleUsersEnum.CLIENT],
 			onSelect() {
